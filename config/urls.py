@@ -15,8 +15,33 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
+from environs import Env
+
+env = Env()
+env.read_env()
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="API аналитического блока",
+        default_version="v1",
+        description="API содержит эндпоинты для аналитического блока.",
+        contact=openapi.Contact(email="kolesnikov-a@ranepa.ru"),
+    ),
+    public=True,
+    url=env("SWAGGER_URL"),
+    permission_classes=(permissions.AllowAny,),
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("science_api/v1/analytical/", include("analytical.urls")),
+    path(
+        "swagger/",
+        schema_view.with_ui("swagger", cache_timeout=0),
+        name="schema-swagger-ui",
+    ),
 ]

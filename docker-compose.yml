@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: web.Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8010:8000"
+
+  db:
+    build:
+      context: .
+      dockerfile: db.Dockerfile
+    ports:
+      - "5433:5435"
+    environment:
+      POSTGRES_PASSWORD: jU285dH1m80C
