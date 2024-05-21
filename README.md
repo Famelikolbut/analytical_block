@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Инструкция для запуска проекта</title>
-</head>
-<body>
 
 <h1>Инструкция для запуска проекта</h1>
 
@@ -29,5 +21,3 @@ python manage.py createsuperuser</code></pre>
 <h2>5. Запуск тестов</h2>
 <pre><code>docker exec analytical_block-web-1 python manage.py test</code></pre>
 
-</body>
-</html>
