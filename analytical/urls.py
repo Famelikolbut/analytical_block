@@ -1,7 +1,7 @@
 from django.urls import path
-
-from . import views
+from .views import AnalyticalListCreateView, AnalyticalDetailView
 
 urlpatterns = [
-    path('analytical/', views.AnalyticalListCreate.as_view(), name='analytical'),
+    path('api/analyticals/', AnalyticalListCreateView.as_view(), name='analytical-list-create'),
+    path('api/analyticals/<uuid:pk>/', AnalyticalDetailView.as_view(), name='analytical-detail'),
 ]

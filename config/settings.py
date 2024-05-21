@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     # 3rd party
     'rest_framework',
     'corsheaders',
-    'drf_yasg'
+    'drf_yasg',
 
     # local
     'analytical',
