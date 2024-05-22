@@ -13,8 +13,8 @@ class AnalyticalAPITests(APITestCase):
         # Создаем несколько объектов для тестов
         self.analytical1 = Analytical.objects.create(name="Analytical 1")
         self.analytical2 = Analytical.objects.create(name="Analytical 2")
-        self.list_url = reverse('analytical-list-create')
-        self.detail_url = lambda pk: reverse('analytical-detail', args=[pk])
+        self.list_url = reverse('analytical_list_create')
+        self.detail_url = lambda pk: reverse('analytical_detail', args=[pk])
 
     def test_get_all_analyticals(self):
         response = self.client.get(self.list_url)

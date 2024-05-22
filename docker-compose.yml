@@ -5,8 +5,12 @@ services:
     build:
       context: .
       dockerfile: db.Dockerfile
+    container_name: my_postgres_db
+    env_file:
+      - .env
     environment:
-      - "POSTGRES_HOST_AUTH_METHOD=trust"
+      POSTGRES_PASSWORD: ${DBPASSWORD}
+      POSTGRES_USER: ${DBUSER}
     ports:
       - "5431:5431"
     volumes:
@@ -16,6 +20,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: my_web_app
     restart: always
     env_file:
       - .env

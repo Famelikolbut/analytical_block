@@ -1,23 +1,28 @@
 
-<h1>Инструкция для запуска проекта</h1>
+# Инструкция для запуска проекта
 
-<h2>1. Клонирование репозитория</h2>
-<pre><code>git clone &lt;URL репозитория&gt;
-cd &lt;название репозитория&gt;</code></pre>
-
-<h2>2. Создание виртуального окружения и установка зависимостей</h2>
-<pre><code>python3 -m venv venv
+1. Клонирование репозитория
+```
+git clone <URL репозитория>
+cd <название репозитория>
+```
+2. Создание виртуального окружения и установка зависимостей
+```
+python3 -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt</code></pre>
-
-<h2>3. Запуск Docker Compose</h2>
-<pre><code>docker-compose up -d --build</code></pre>
-
-<h2>4. Миграция базы данных и создание суперпользователя</h2>
-<pre><code>docker exec -it analytical_block-web-1 bash
+pip install -r requirements.txt
+```
+3. Запуск Docker Compose
+```
+docker-compose up -d --build
+```
+4. Миграция базы данных и создание суперпользователя
+```
+docker exec -it my_web_app bash
 python manage.py migrate
-python manage.py createsuperuser</code></pre>
-
-<h2>5. Запуск тестов</h2>
-<pre><code>docker exec analytical_block-web-1 python manage.py test</code></pre>
-
+python manage.py createsuperuser
+```
+5. Запуск тестов
+```
+docker exec my_web_app python manage.py test
+```

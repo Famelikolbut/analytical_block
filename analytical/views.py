@@ -4,7 +4,6 @@ from rest_framework import status
 from rest_framework.parsers import JSONParser
 from drf_yasg.utils import swagger_auto_schema
 from .models import Analytical
-from .schemas import analytical_list_create_structure
 from .serializers import AnalyticalSerializer
 
 
@@ -24,7 +23,7 @@ class AnalyticalListCreateView(APIView):
     @swagger_auto_schema(
         operation_description="Create a new analytical",
         operation_summary="Create a new analytical",
-        request_body=analytical_list_create_structure,
+        request_body=AnalyticalSerializer,
         responses={201: AnalyticalSerializer, 400: 'Bad Request'},
     )
     def post(self, request, *args, **kwargs):
@@ -33,6 +32,7 @@ class AnalyticalListCreateView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class AnalyticalDetailView(APIView):
     parser_classes = [JSONParser]
@@ -53,7 +53,7 @@ class AnalyticalDetailView(APIView):
     @swagger_auto_schema(
         operation_description="Update an analytical by ID",
         operation_summary="Update an analytical by ID",
-        request_body=analytical_list_create_structure,
+        request_body=AnalyticalSerializer,
         responses={200: AnalyticalSerializer, 400: 'Bad Request', 404: 'Not Found'},
     )
     def put(self, request, pk, *args, **kwargs):
@@ -79,4 +79,3 @@ class AnalyticalDetailView(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
         analytical.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
