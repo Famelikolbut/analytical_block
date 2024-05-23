@@ -4,6 +4,9 @@ services:
   db:
     build:
       context: .
+      args:
+        DBPASSWORD: ${DBPASSWORD}
+        DBUSER: ${DBUSER}
       dockerfile: db.Dockerfile
     container_name: my_postgres_db
     env_file:
